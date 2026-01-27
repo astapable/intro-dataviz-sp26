@@ -1,4 +1,4 @@
-# Intro to Data Visualization - Labs Overview (Staging Branch)
+# Intro to Data Visualization - Labs Overview
 
 ## 01_interval
 Basic D3.js clock visualizations. Learn SVG setup, time markers, and D3 selections.
