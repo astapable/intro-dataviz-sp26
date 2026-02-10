@@ -29,15 +29,15 @@
 </head>
 <body>
   <div class="clock-container">
-    <svg id="clock" width="300" height="300"></svg>
+    <svg id="clock" width="600" height="600"></svg>
   </div>
 
   <script>
     // Set up the SVG container
     const svg = d3.select("#clock");
-    const width = 300;
-    const height = 300;
-    const radius = Math.min(width, height) / 2 - 10;
+    const width = 600;
+    const height = 600;
+    const radius = Math.min(width, height) / 2 - 20;
     const centerX = width / 2;
     const centerY = height / 2;
 
@@ -49,8 +49,8 @@
       .attr("class", "clock-face");
 
     // Create 60 marker circles arranged around the face
-    const totalMarkers = 60;
-    const markersGroup = svg.append("g").attr("transform", `translate(${centerX}, ${centerY})`);
+    const totalMarkers = 240;
+    const markersGroup = svg.append("g").attr("transform", `translate(${centerX}, ${centerY}) rotate(0)`);
 
     const markersData = d3.range(totalMarkers).map(i => {
       const angle = (i / totalMarkers) * 2 * Math.PI - Math.PI / 2;
@@ -101,6 +101,14 @@
 
       loop(true);
     });
+
+    // Rotate the whole markersGroup clockwise synced to real time (full rotation every 60s)
+    d3.interval(() => {
+      const now = new Date();
+      const fracSec = now.getSeconds() + now.getMilliseconds() / 1000;
+      const angle = (fracSec / 60) * 360; // degrees
+      markersGroup.attr("transform", `translate(${centerX}, ${centerY}) rotate(${angle})`);
+    }, 50);
 
     // Update the digital clock text every 250ms
     d3.interval(() => {
