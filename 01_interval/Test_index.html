@@ -33,7 +33,7 @@
   </div>
 
   <script>
-    // Set up the SVG container
+    // NO CHANGE_Set up the SVG container
     const svg = d3.select("#clock");
     const width = 600;
     const height = 600;
@@ -41,16 +41,16 @@
     const centerX = width / 2;
     const centerY = height / 2;
 
-    // Create the clock face
+    // NO CHANGE_Create the clock face
     svg.append("circle")
       .attr("cx", centerX)
       .attr("cy", centerY)
       .attr("r", radius)
       .attr("class", "clock-face");
 
-    // Create 60 marker circles arranged around the face
+    // ADDITION_Create 60 marker circles arranged around the face
     const totalMarkers = 240;
-    const markersGroup = svg.append("g").attr("transform", `translate(${centerX}, ${centerY}) rotate(0)`);
+    const markersGroup = svg.append("g").attr("transform", `translate(${centerX}, ${centerY}) rotate(0)`); // Adding initial state of 0 thrt later on addressed
 
     const markersData = d3.range(totalMarkers).map(i => {
       const angle = (i / totalMarkers) * 2 * Math.PI - Math.PI / 2;
